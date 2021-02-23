@@ -15,7 +15,7 @@ import static org.launchcode.javawebdevtechjobsmvc.controllers.ListController.co
  */
 @Controller
 @RequestMapping("search")
-public class SearchController {
+public class SearchController extends TechJobsController {
 
     @RequestMapping(value = "")
     public String search(Model model) {
@@ -30,6 +30,7 @@ public class SearchController {
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")) {
             jobs = JobData.findAll();
             model.addAttribute("title", "All Jobs");
+            model.addAttribute("searchTypeSelected", "all");
         } else {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
             model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + "s that include the keyword: " + searchTerm);
