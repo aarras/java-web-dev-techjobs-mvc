@@ -27,5 +27,18 @@
         </div>
     </div>
 
+    <table th:fragment="list-jobs">
+        <tr th:each="job : ${jobs}">
+            <td>
+                <p><strong>ID: </strong><th:block th:text="${job.getId()}"></th:block></p>
+                <p><strong>Name: </strong><th:block th:text="${job.getName()}"></th:block></p>
+                <p><strong>Employer: </strong><a th:href="@{/list/jobs(column='employer',value=${job.getEmployer()})}" th:text="${job.getEmployer()}"></a></p>
+                <p><strong>Location: </strong><a th:href="@{/list/jobs(column='location',value=${job.getLocation()})}" th:text="${job.getLocation()}"></a></p>
+                <p><strong>Position Type: </strong><a th:href="@{/list/jobs(column='positionType',value=${job.getPositionType()})}" th:text="${job.getPositionType()}"></a></p>
+                <p><strong>Skill: </strong><a th:href="@{/list/jobs(column='coreCompetency',value=${job.getCoreCompetency()})}" th:text="${job.getCoreCompetency()}"></a></p>
+            </td>
+        </tr>
+    </table>
+
 </body>
 </html>
