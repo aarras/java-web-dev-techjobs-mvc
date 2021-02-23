@@ -30,14 +30,13 @@ public class SearchController extends TechJobsController {
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")) {
             jobs = JobData.findAll();
             model.addAttribute("title", "All Jobs");
-            model.addAttribute("searchTypeSelected", "all");
         } else {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
             model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + "s that include the keyword: " + searchTerm);
-            model.addAttribute("searchTypeSelected", searchType);
         }
         model.addAttribute("jobs", jobs);
         model.addAttribute("columns", columnChoices);
+        model.addAttribute("searchTypeSelected", searchType);
 
         return "search";
     }
